@@ -1,7 +1,7 @@
 /**
  * @author Siqi Wang siqiw1 on 6/10/16.
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements LinkedListInterface<E> {
     private static class Node<T> {
         private T data;
         private Node<T> next;
@@ -18,17 +18,13 @@ public class LinkedList<E> {
         head = null;
     }
 
+    @Override
     // insert a new node at the beginning of the list
     public void addFirst(E item) {
         head = new Node<E>(item, head);
     }
 
-    // traverse
-    //    Node<E> temp = head;
-    //    while (temp.next != null) {
-    //        temp = temp.next;
-    //    }
-
+    @Override
     public void insertBefore(E key, E toInsert) {
         // if the list is empty
         if (head == null) {
@@ -39,9 +35,7 @@ public class LinkedList<E> {
             head.next = new Node(toInsert, head.next);
             return;
         }
-        /*
-        key is not the head, needs to keep track of previous node of current node.
-         */
+        // key is not the head, needs to keep track of previous node of current node.
         Node<E> prev = null;
         Node<E> cur = head;
         while (cur != null && !cur.data.equals(key)) {
@@ -54,6 +48,7 @@ public class LinkedList<E> {
         }
     }
 
+    @Override
     // insert a new node to the end of the list
     public void addLast(E item) {
         // if the list is empty
@@ -69,6 +64,7 @@ public class LinkedList<E> {
         }
     }
 
+    @Override
     // find a node containing "key" and insert a new node after it.
     public void insertAfter(E key, E toInsert) {
         // find the location first with the given key
@@ -83,6 +79,7 @@ public class LinkedList<E> {
         }
     }
 
+    @Override
     // remove the first occurrence of a key from the list
     public void remove(E key) {
         // if the list is empty
